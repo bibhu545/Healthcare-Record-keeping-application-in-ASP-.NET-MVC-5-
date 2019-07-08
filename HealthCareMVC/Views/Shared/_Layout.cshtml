@@ -1,0 +1,139 @@
+﻿@using DataModels
+
+<!DOCTYPE html>
+
+<html>
+<head>
+    <title>HealthCareMVC</title>
+    <meta name="viewport" content="width=device-width" />
+    <link href="https://fonts.googleapis.com/css?family=Acme|Lobster+Two" rel="stylesheet" />
+    <link href="~/Contents/css/bootstrap.min.css" rel="stylesheet" />
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+    <link href="~/Contents/css/site-style.css" rel="stylesheet" />
+    @RenderSection("HeaderSection", required: false)
+</head>
+<body class="content-body">
+    <div class="content-overlay">
+        <nav class="navbar navbar-inverse navbar-fixed-top">
+            <div class="container">
+                <div class="navbar-header">
+                    <button type="button" class="navbar-toggle" data-toggle="collapse" data-target="#myNavbar">
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                        <span class="icon-bar"></span>
+                    </button>
+                    <a class="navbar-brand active" href="/"><span style="color: red;">H</span>ealth<span style="color: red;">C</span>are.com</a>
+                </div>
+                <div class="collapse navbar-collapse" id="myNavbar">
+                    <ul class="nav navbar-nav navbar-right">
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                <i class="fa fa-ambulance"></i>
+                                My Hospitals <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/ViewHospitals">View Hospitals</a></li>
+                                <li><a href="/AddHospital">Add Hospital</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                <i class="fa fa-user-md"></i> My Doctors <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/ViewDoctors">View Doctors</a></li>
+                                <li><a href="/AddDoctor">Add Doctor</a></li>
+                            </ul>
+                        </li>
+                        <li class="dropdown">
+                            <a class="dropdown-toggle" data-toggle="dropdown" href="#">
+                                <i class="fa fa-folder" aria-hidden="true"></i> My Vault <span class="caret"></span>
+                            </a>
+                            <ul class="dropdown-menu">
+                                <li><a href="/ViewDocuments">View Documents</a></li>
+                                <li><a href="/AddNewDocument">Add New Document</a></li>
+                            </ul>
+                        </li>
+                        <li><a href="/ChangePassword">Change Password</a></li>
+                        <li><a href="/Logout"><i class="fa fa-sign-out" aria-hidden="true"></i> Logout</a></li>
+                    </ul>
+                </div>
+            </div>
+        </nav>
+        <div class="container">
+            <div class="row">
+                <div class="col-md-9 content-pane">
+
+                    @if (TempData["errorMessage"] != null)
+                    {
+                        <div class="alert alert-danger alert-dismissible fade in">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            <strong>Error! </strong> @TempData["errorMessage"]
+                        </div>
+                    }
+                    @if (TempData["successMessage"] != null)
+                    {
+                        <div class="alert alert-success alert-dismissible fade in">
+                            <a href="#" class="close" data-dismiss="alert" aria-label="close">&times;</a>
+                            <strong>Success! </strong> @TempData["successMessage"]
+                        </div>
+                    }
+
+                    @RenderBody()
+
+                </div>
+                <div class="col-md-3 side-pane">
+                    <div class="profile-image">
+                        <center>
+                            @{
+                                User user = null;
+                                if (Session["loggedUser"] != null)
+                                {
+                                    user = (User)Session["loggedUser"];
+                                }
+                                else
+                                {
+                                    user = (User)Session["inactiveUser"];
+                                    user.Profile = @"/files/profiles/default-profile.png";
+                                }
+                            }
+                            <img src="@user.Profile" alt="Profile Picture" class="img-responsive img-circle" />
+                            <h3>Hello @user.FirstName</h3>
+                            <br />
+                            <div class="list-group">
+                                <a href="UserHome" class="list-group-item">Home</a>
+                                <a href="/ViewProfile" class="list-group-item">View Profile</a>
+                                <a href="/EditProfile" class="list-group-item">Edit Profile</a>
+                                <a href="/ChangePassword" class="list-group-item">Change Password</a>
+                            </div>
+                        </center>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <br /><br />
+        <footer class="footer">
+            <div class="container">
+                <div class="row">
+                    <div class="col-md-12">
+                        <p>
+                            Join us at
+                            <a href="#"> <i class="fa fa-facebook"></i> </a>
+                            <a href="#"> <i class="fa fa-twitter"></i> </a>
+                            <a href="#"> <i class="fa fa-youtube"></i> </a>
+                            <a href="#"> <i class="fa fa-instagram"></i> </a>
+                            <a href="#"> <i class="fa fa-github"></i> </a>
+                        </p>
+                        <p>Copyright &copy; HealthcareMVC.com - @DateTime.Now.Year</p>
+                    </div>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script src="~/Scripts/jquery-3.4.1.min.js"></script>
+    <script src="~/Scripts/bootstrap.min.js"></script>
+    <script src="~/Scripts/Site-Script.js"></script>
+    @RenderSection("FooterSection", required: false)
+</body>
+</html>

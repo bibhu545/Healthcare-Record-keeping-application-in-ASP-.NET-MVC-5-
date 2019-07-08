@@ -1,0 +1,9 @@
+D:\VisualStudio17\assignments\HealthCareMVC\BusinessLayer\bin\Debug\BusinessLayer.dll
+D:\VisualStudio17\assignments\HealthCareMVC\BusinessLayer\bin\Debug\BusinessLayer.pdb
+D:\VisualStudio17\assignments\HealthCareMVC\BusinessLayer\bin\Debug\DataAccess.dll
+D:\VisualStudio17\assignments\HealthCareMVC\BusinessLayer\bin\Debug\DataModels.dll
+D:\VisualStudio17\assignments\HealthCareMVC\BusinessLayer\bin\Debug\DataAccess.pdb
+D:\VisualStudio17\assignments\HealthCareMVC\BusinessLayer\bin\Debug\DataModels.pdb
+D:\VisualStudio17\assignments\HealthCareMVC\BusinessLayer\obj\Debug\BusinessLayer.csprojResolveAssemblyReference.cache
+D:\VisualStudio17\assignments\HealthCareMVC\BusinessLayer\obj\Debug\BusinessLayer.dll
+D:\VisualStudio17\assignments\HealthCareMVC\BusinessLayer\obj\Debug\BusinessLayer.pdb

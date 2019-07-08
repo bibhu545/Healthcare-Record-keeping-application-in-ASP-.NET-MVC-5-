@@ -1,0 +1,34 @@
+﻿
+@{
+    ViewBag.Title = "ConfirmRegistration";
+}
+
+@section HeaderSection
+{
+    <style>
+        .opt-text {
+            color: grey;
+        }
+
+        .form-group {
+            width: 50%;
+            margin: auto;
+            margin-top: 5%;
+        }
+    </style>
+}
+
+@using (Html.BeginForm("ConfirmRegistrationRequest", "User"))
+{
+    <div class="form-group">
+        <label>Enter OTP *: </label>
+        <input type="text" id="txtSecurityCode" name="txtSecurityCode" class="form-control" placeholder="Enter verification code provided to your mail." />
+        <br />
+        <span class="opt-text">Check your mail for otp. It's valid for limited time</span>
+    </div>
+
+    <br />
+    <center>
+        <input type="submit" id="btnAddHospital" class="btn btn-primary" value="Confirm Membership" />
+    </center>
+}

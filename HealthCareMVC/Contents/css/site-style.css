@@ -1,0 +1,191 @@
+﻿/* start Home styling */
+
+.home-body {
+    margin: 0;
+    padding: 0;
+    background-image: url('/Contents/images/operation.jpg');
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+    font-family: 'Acme', sans-serif;
+}
+
+.register-body {
+    margin: 0;
+    padding: 0;
+    background-image: url('/Contents/images/doctor-tools.jpg');
+    background-attachment: fixed;
+    background-size: cover;
+    background-repeat: no-repeat;
+    font-family: 'Acme', sans-serif;
+}
+
+.content-body {
+    font-family: 'Acme', sans-serif;
+    /*background: linear-gradient(90deg, rgba(163,255,248,1) 0%,rgba(235,251,255,1) 0%, rgba(255,255,255,1) 30%, rgba(255,255,255,1) 60%, rgba(235,251,255,1) 100%, rgba(163,255,248,1) 100%);*/
+    background-image: url('/Contents/images/content-bg.jpg');
+    background-attachment: fixed;
+    background-size: cover;
+    background-position: center center;
+    background-repeat: no-repeat;
+}
+
+.content-overlay {
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    z-index: -5;
+    background: linear-gradient(90deg, rgba(206, 206, 206,0.5) 0%,rgba(239, 237, 237,0.9) 0%, rgba(255,255,255,0.92) 30%, rgba(255,255,255,0.92) 60%, rgba(239, 237, 237,0.9) 100%, rgba(206, 206, 206,0.5) 100%);
+}
+
+.home {
+    height: 100vh;
+    margin: auto;
+}
+
+.overlay {
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    z-index: -5;
+    background: rgba(40, 40, 40, 0.8);
+}
+.login-page-overlay {
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    z-index: -5;
+    background: rgba(0, 0, 0, 0.2);
+}
+.form-overlay {
+    top: 0;
+    right: 0;
+    height: 100%;
+    width: 100%;
+    z-index: -1;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 3%;
+    border: 1px solid white;
+    border-radius: 10px;
+}
+.home-content {
+    padding-top: 15%;
+    color: white;
+    margin: auto;
+    text-align: center;
+    font-size: 1.2em;
+}
+
+.home-content h2 {
+    font-family: 'Lobster Two', cursive;
+    text-shadow: 0 0 15px #FF0000;
+}
+
+.control-label {
+    text-align: right;
+}
+a{
+    text-decoration: none;
+}
+
+.alert {
+    margin: 0% 4% 0% 4%;
+}
+
+.img-circle{
+    height: 120px;
+    width: 100px;
+}
+.form-control{
+    border: 1px solid;
+}
+.table-custom{
+    background-color: white;
+}
+
+.all-items {
+    width: 100%;
+}
+
+    .all-items item {
+        float: left;
+        margin-bottom: 10px;
+    }
+
+li.active {
+    background: #428bca;
+}
+
+.item {
+    height: 175px;
+    padding: 2%;
+}
+
+.inner-item {
+    border: 1px solid grey;
+    border-radius: 5px;
+    height: 100%;
+    transition: transform .2s;
+}
+
+/* Document Showing */
+
+.inner-data {
+    padding: 2px;
+}
+
+.inner-item:hover {
+    border: 1px solid #428bca;
+    transform: scale(1.1);
+    box-shadow: 7px 7px 4px 0px rgba(0,0,0,0.4);
+}
+
+.inner-icon {
+    background-color: lightgrey;
+    height: 75px;
+    align-content: center;
+    text-align: center;
+    border-radius: 5px 5px 1px 1px;
+    margin-bottom: 3%;
+}
+
+.glyphicon-file {
+    font-size: 2em;
+    margin-top: 7%;
+}
+
+.span-badge {
+    float: right;
+}
+
+.well {
+    margin-right: 4%;
+}
+
+body {
+    font-family: 'Acme', sans-serif;
+}
+
+.side-pane {
+    padding-top: 13%;
+    min-height: 80vh;
+}
+
+.content-pane {
+    padding-top: 13%;
+    min-height: 80vh;
+}
+
+.img-circle {
+    border: 1px solid;
+}
+
+.footer {
+    min-height: 7vh;
+    background-color: lightgray;
+    text-align: center;
+    padding: 1.5%;
+}
