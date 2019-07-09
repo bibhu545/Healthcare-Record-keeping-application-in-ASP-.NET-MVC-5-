@@ -1,7 +1,78 @@
-﻿
+﻿@using DataModels
+
 @{
     ViewBag.Title = "ViewProfile";
+    User user = (User)ViewBag.user;
 }
 
-<h2>ViewProfile</h2>
+@section HeaderSection
+{
+    <style>
+        .blank-span {
+            color: grey;
+        }
+        .content-pane {
+            padding-top: 10%;
+        }
+    </style>
+}
+
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <div class="table-responsive">
+
+            <br />
+            <center>
+                <h3>My Profile</h3>
+            </center>
+            <br />
+            <table class="table table-hover cover-details">
+                <tr>
+                    <th>First Name: </th>
+                    <td>@user.FirstName</td>
+                </tr>
+                <tr>
+                    <th>Last Name: </th>
+                    <td>@user.LastName</td>
+                </tr>
+                <tr>
+                    <th>Email: </th>
+                    <td>@user.Email)</td>
+                </tr>
+                <tr>
+                    <th>Phone: </th>
+                    <td>
+                        @if(user.Phone.Equals(""))
+                        { 
+                        <span class="blank-span"><i>Please click edit to add Phone Number.</i></span>
+                        }
+                        else
+                        {
+                        @user.Phone
+                        }
+                    </td>
+                </tr>
+                <tr>
+                    <th>Address: </th>
+                    <td>
+                        @if (user.Address.Equals(""))
+                        {
+                            <span class="blank-span"><i>Please click edit to add Phone Number.</i></span>
+                        }
+                        else
+                        {
+                            @user.Address
+                        }
+                    </td>
+                </tr>
+            </table>
+            <br />
+            <center>
+                <a href="/EditProfile" class="btn btn-primary">Edit Profile</a>
+            </center>
+        </div>
+    </div>
+    <div class="col-md-2"></div>
+</div>
 

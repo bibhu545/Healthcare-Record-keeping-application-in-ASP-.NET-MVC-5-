@@ -1,0 +1,57 @@
+﻿@model DataModels.Hospital
+@{
+    ViewBag.Title = "AddNewHospital";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+@section HeaderSection
+{
+    <style>
+        .content-pane {
+            padding-top: 10%;
+        }
+    </style>
+}
+
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+
+        <center>
+            <h3>Add New Hospital</h3>
+        </center>
+        @using (Html.BeginForm("AddNewHospitalRequest", "Hospital"))
+        {
+            <div class="form-group">
+                <label>Name: </label>
+                @Html.TextBoxFor(x => x.HospitalName, new { Class = "form-control", placeholder = "Enter Hospital Name" })
+            </div>
+            <div class="form-group">
+                <label>Address: </label>
+                @Html.TextBoxFor(x => x.Address, new { Class = "form-control", placeholder = "Enter Hospital Address" })
+            </div>
+            <div class="form-group">
+                <label>Contact Number: </label>
+                @Html.TextBoxFor(x => x.Phone1, new { Class = "form-control", placeholder = "Enter Contact Number" })
+            </div>
+            <div class="form-group">
+                <label>Alternative Contact Number: </label>
+                @Html.TextBoxFor(x => x.Phone2, new { Class = "form-control", placeholder = "Enter Alternative Contact Number" })
+            </div>
+            <div class="form-group">
+                <label>Email: </label>
+                @Html.TextBoxFor(x => x.Email, new { Class = "form-control", placeholder = "Enter Hospital Email" })
+            </div>
+            <div class="form-group">
+                <label class="checkbox-inline">@Html.CheckBoxFor(x => x.SetPrimary) Set Primary</label>
+            </div>
+            <center>
+                <input type="submit" class="btn btn-primary" value="Add Now"/>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="/ViewHospitals" class="btn btn-default">Cancel</a>
+            </center>
+        }
+    </div>
+    <div class="col-md-2"></div>
+</div>
+

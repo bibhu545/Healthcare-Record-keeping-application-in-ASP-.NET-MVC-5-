@@ -1,7 +1,73 @@
-﻿
+﻿@using DataModels
 @{
     ViewBag.Title = "EditProfile";
+    User user = (User)ViewBag.user;
 }
 
-<h2>EditProfile</h2>
+@section HeaderSection
+{
+    <style>
+        .content-pane {
+            padding-top: 10%;
+        }
+    </style>
+}
+
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        <div class="table-responsive">
+
+            <center>
+                <h3>Edit Profile</h3>
+            </center>
+            @using (Html.BeginForm("EditProfileRequest", "User", FormMethod.Post, new { enctype = "multipart/form-data" }))
+            {
+                <table class="table table-hover cover-details">
+                    <tr>
+                        <th>First Name: </th>
+                        <td>
+                            <input type="text" id="txtFirstName" name="txtFirstName" class="form-control" placeholder="Enter First Name" required="required" value="@user.FirstName" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Last Name: </th>
+                        <td>
+                            <input type="text" id="txtLastName" name="txtLastName" class="form-control" placeholder="Enter Last Name" required="required" value="@user.LastName" />
+                        </td>
+                    </tr>
+                    @*<tr>
+                        <th>Email: </th>
+                        <td>
+                            <input type="email" id="txtEmail" name="txtEmail" class="form-control" placeholder="Enter Email" required="required" value="@user.Email"/>
+                        </td>
+                    </tr>*@
+                    <tr>
+                        <th>Phone: </th>
+                        <td>
+                            <input type="text" id="txtPhone" name="txtPhone" class="form-control" placeholder="Enter Contact Number" value="@user.Phone" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Address: </th>
+                        <td>
+                            <input type="text" id="txtAddress" name="txtAddress" class="form-control" placeholder="Enter Address" value="@user.Address" />
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Profile picture: </th>
+                        <td><input type="file" name="txtProfile" /></td>
+                    </tr>
+                </table>
+                <br />
+                <center>
+                    <input type="submit" class="btn btn-primary" value="Edit Profile" id="btnEditProfile" /> &nbsp;&nbsp;
+                    <a class="btn btn-default" href="/ViewProfile">Cancel</a>
+                </center>
+            }
+        </div>
+    </div>
+    <div class="col-md-2"></div>
+</div>
+
 

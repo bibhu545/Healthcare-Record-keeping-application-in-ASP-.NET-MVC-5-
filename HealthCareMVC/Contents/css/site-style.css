@@ -189,3 +189,7 @@ body {
     text-align: center;
     padding: 1.5%;
 }
+
+.social-icons a {
+    margin-right: 15px;
+}

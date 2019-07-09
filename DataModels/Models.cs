@@ -31,6 +31,7 @@ namespace DataModels
         public String Phone2 { get; set; }
         public String Email { get; set; }
         public int IsPrimary { get; set; }
+        public bool SetPrimary { get; set; }   //for mvc checkboxfor control
     }
     public class Doctor
     {

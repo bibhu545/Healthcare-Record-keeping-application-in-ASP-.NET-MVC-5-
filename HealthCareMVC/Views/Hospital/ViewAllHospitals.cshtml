@@ -1,0 +1,87 @@
+﻿@model IEnumerable<DataModels.Hospital>
+@{
+    ViewBag.Title = "ViewAllHospitals";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+    WebGrid webGrid = new WebGrid(source: Model, rowsPerPage: 5);
+}
+
+@section HeaderSection
+{
+    <style>
+        .content-pane {
+            padding-top: 10%;
+        }
+    </style>
+}
+
+<center>
+    <h3>All Hospitals</h3>
+</center>
+<br />
+
+@webGrid.GetHtml(tableStyle: "table table-responsive table-hover",
+    mode: WebGridPagerModes.All,
+    firstText: "<< First",
+    previousText: "< Prev",
+    nextText: "Next >",
+    lastText: "Last >>",
+    columns: webGrid.Columns(
+         webGrid.Column(header: "Hospital Name", columnName: "HospitalName", format: (item) => { if (item.IsPrimary == 1) return @Html.Raw(item.HospitalName + "<br /> (Primary Hospital)"); else return item.HospitalName; }),
+         webGrid.Column("Email", "E-mail"),
+         webGrid.Column("Address", "Address"),
+         webGrid.Column("Phone1", "Contact Number"),
+         webGrid.Column("Phone2", "Alternative Number"),
+         webGrid.Column(columnName: "View", format: (item) => Html.ActionLink("View", "ViewHospital", new { id = item.hospitalID }), canSort: false),
+         webGrid.Column(columnName: "Edit", format: (item) => Html.ActionLink("Edit", "EditHospital", new { id = item.hospitalID }), canSort: false),
+         webGrid.Column(columnName: "Delete", format: (item) => Html.ActionLink("Delete", "DeleteHospital", new { id = item.hospitalID }), canSort: false)
+    )
+)
+
+
+
+
+
+
+
+
+
+
+
+
+@*@webGrid.GetHtml(
+    tableStyle: "table table-bordered table-striped",
+    fillEmptyRows: false,         //show empty row when there is only one record on page to it will display all empty rows there.
+    mode: WebGridPagerModes.All,  //paging to grid
+    firstText: "<< First",
+    previousText: "< Prev",
+    nextText: "Next >",
+    lastText: "Last >>",
+    columns: new[]
+    {
+        //grid.Column("HospitalId"), //the model fields to display
+        webGrid.Column("hospitalname", "Hospital Name"),
+        webGrid.Column("address", "Address"),
+        webGrid.Column("phone1", "Contact Number"),
+        webGrid.Column("phone2", "Alternative Number"),
+        webGrid.Column("email", "Email"),
+        webGrid.Column("Action", format:@<span class="link">
+                                           @Html.ActionLink("Edit", "Edit", new { hospitalId = @item.HospitalId})
+                                           @Html.ActionLink("Delete", "Delete", new { hospitalId = @item.HospitalId })
+                                       </span>
+     )})*@
+
+
+
+@*
+    @webGrid.GetHtml(
+        htmlAttributes: new { @id = "WebGrid", @class = "Grid" },
+        tableStyle: "table table-bordered",
+        columns: webGrid.Columns(
+                 webGrid.Column("hospitalid", "#Id"),
+                 webGrid.Column("hospitalname", "Hospital Name"),
+                 webGrid.Column("address", "Address"),
+                 webGrid.Column("phone1", "Contact Number"),
+                 webGrid.Column("phone2", "Alternative Number"),
+                 webGrid.Column("email", "Email")))
+*@
+

@@ -33,7 +33,7 @@
                             </a>
                             <ul class="dropdown-menu">
                                 <li><a href="/ViewHospitals">View Hospitals</a></li>
-                                <li><a href="/AddHospital">Add Hospital</a></li>
+                                <li><a href="/AddNewHospital">Add Hospital</a></li>
                             </ul>
                         </li>
                         <li class="dropdown">
@@ -86,7 +86,7 @@
                     <div class="profile-image">
                         <center>
                             @{
-                                User user = null;
+                                User user = new User();
                                 if (Session["loggedUser"] != null)
                                 {
                                     user = (User)Session["loggedUser"];
@@ -116,13 +116,13 @@
             <div class="container">
                 <div class="row">
                     <div class="col-md-12">
-                        <p>
-                            Join us at
-                            <a href="#"> <i class="fa fa-facebook"></i> </a>
-                            <a href="#"> <i class="fa fa-twitter"></i> </a>
-                            <a href="#"> <i class="fa fa-youtube"></i> </a>
-                            <a href="#"> <i class="fa fa-instagram"></i> </a>
-                            <a href="#"> <i class="fa fa-github"></i> </a>
+                        <p class="social-icons">
+                            Join us at 
+                            <a href="#"> <i class="fa fa-facebook"></i> </a> 
+                            <a href="#"> <i class="fa fa-twitter"></i> </a> 
+                            <a href="#"> <i class="fa fa-youtube"></i> </a> 
+                            <a href="#"> <i class="fa fa-instagram"></i> </a> 
+                            <a href="#"> <i class="fa fa-github"></i> </a> 
                         </p>
                         <p>Copyright &copy; HealthcareMVC.com - @DateTime.Now.Year</p>
                     </div>
