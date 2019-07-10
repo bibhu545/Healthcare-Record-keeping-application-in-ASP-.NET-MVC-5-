@@ -11,6 +11,9 @@
         .content-pane {
             padding-top: 10%;
         }
+        .deleteLink {
+            color: red;
+        }
     </style>
 }
 
@@ -33,16 +36,23 @@
          webGrid.Column("Phone2", "Alternative Number"),
          webGrid.Column(columnName: "View", format: (item) => Html.ActionLink("View", "ViewHospital", new { id = item.hospitalID }), canSort: false),
          webGrid.Column(columnName: "Edit", format: (item) => Html.ActionLink("Edit", "EditHospital", new { id = item.hospitalID }), canSort: false),
-         webGrid.Column(columnName: "Delete", format: (item) => Html.ActionLink("Delete", "DeleteHospital", new { id = item.hospitalID }), canSort: false)
+         webGrid.Column(columnName: "Delete", format: (item) => Html.ActionLink("Delete", "DeleteHospital", new { id = item.hospitalID }, new { Class = "deleteLink" }), canSort: false)
     )
 )
 
-
-
-
-
-
-
+@section FooterSection
+{
+    <script>
+        $(document).ready(function () {
+            $(".deleteLink").click(function (e) {
+                if (!window.confirm("Are you sure?"))
+                {
+                    e.preventDefault();
+                }
+            });
+        });
+    </script>
+}
 
 
 

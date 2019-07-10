@@ -1,0 +1,85 @@
+﻿@model DataModels.Doctor
+
+@{
+    ViewBag.Title = "AddNewDoctor";
+}
+
+@section HeaderSection
+{
+    <style>
+        .content-pane {
+            padding-top: 10%;
+        }
+    </style>
+}
+
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+
+        <center>
+            <h3>Add New Doctor</h3>
+        </center>
+
+        @using (Html.BeginForm("AddNewDoctorRequest", "Doctor"))
+        {
+            @Html.AntiForgeryToken()
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.FirstName)
+                @Html.TextBoxFor(model => model.FirstName, new { Class = "form-control", placeholder = "Enter First Name" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.LastName)
+                @Html.TextBoxFor(model => model.LastName, new { Class = "form-control", placeholder = "Enter First Name" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.LastName)
+                @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.LastName)
+                @Html.EditorFor(model => model.LastName, new { htmlAttributes = new { @class = "form-control" } })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Address)
+                @Html.TextBoxFor(model => model.Address, new { Class = "form-control", placeholder = "Enter Address" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Phone1)
+                @Html.TextBoxFor(model => model.Phone1, new { Class = "form-control", placeholder = "Enter Contact Number" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Phone2)
+                @Html.TextBoxFor(model => model.Phone2, new { Class = "form-control", placeholder = "Enter Alternative Number" })
+            </div>
+
+            <div class="form-group">
+                @Html.LabelFor(model => model.Email)
+                @Html.TextBoxFor(model => model.Email, new { Class = "form-control", placeholder = "Enter Email" })
+            </div>
+
+            <div class="form-group">
+                <label class="checkbox-inline">@Html.CheckBoxFor(model => model.SetPrimary)</label>
+            </div>
+
+            <center>
+                <input type="submit" value="Add Now" class="btn btn-primary"/>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="/ViewDoctors" class="btn btn-default">Cancel</a>
+            </center>
+        }
+
+    </div>
+    <div class="col-md-2"></div>
+</div>
+
+
+
+

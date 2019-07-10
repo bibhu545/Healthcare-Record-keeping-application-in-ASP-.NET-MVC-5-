@@ -243,14 +243,14 @@ namespace DataAccess
             }
             return deleted;
         }
-        public Hospital GetHospitalDetailsFromDB(int id)
+        public Hospital GetHospitalDetailsFromDB(int userid, int id)
         {
             Hospital hospital = new Hospital();
             try
             {
                 conn = new SqlConnection(connectionString);
                 conn.Open();
-                SqlCommand scmd = new SqlCommand("select * from hospitals Where hospitalid = " + id, conn);
+                SqlCommand scmd = new SqlCommand("select * from hospitals Where userid = " + userid + " and hospitalid = " + id, conn);
                 SqlDataAdapter sda = new SqlDataAdapter(scmd);
                 DataTable dt = new DataTable();
                 sda.Fill(dt);

@@ -77,9 +77,9 @@ namespace BusinessLayer
         {
             return new DataAccessClass().DeleteHospitalFromDB(hospitalid);
         }
-        public Hospital GetHospitalDetails(int id)
+        public Hospital GetHospitalDetails(int userid, int id)
         {
-            return new DataAccessClass().GetHospitalDetailsFromDB(id);
+            return new DataAccessClass().GetHospitalDetailsFromDB(userid, id);
         }
         public Hospital EditHospitalDetails(Hospital hospital)
         {

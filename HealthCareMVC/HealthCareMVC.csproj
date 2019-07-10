@@ -132,6 +132,7 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="App_Start\RouteConfig.cs" />
+    <Compile Include="Controllers\DoctorController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HospitalController.cs" />
     <Compile Include="Controllers\UserController.cs" />
@@ -158,6 +159,9 @@
     <Content Include="Views\Home\ErrorControl.cshtml" />
     <Content Include="Views\Hospital\AddNewHospital.cshtml" />
     <Content Include="Views\Hospital\ViewAllHospitals.cshtml" />
+    <Content Include="Views\Hospital\ViewHospital.cshtml" />
+    <Content Include="Views\Hospital\EditHospital.cshtml" />
+    <Content Include="Views\Doctor\AddNewDoctor.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>
