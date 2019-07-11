@@ -210,7 +210,7 @@ namespace HealthCareMVC.Controllers
                 hospital = new BusinessClass().EditHospitalDetails(hospital);
                 if (hospital.status > 0)
                 {
-                    TempData["successMessage"] = "New hospital added.";
+                    TempData["successMessage"] = "Hospital details updated.";
                     return RedirectToAction("ViewAllHospitals", "Hospital");
                 }
                 else

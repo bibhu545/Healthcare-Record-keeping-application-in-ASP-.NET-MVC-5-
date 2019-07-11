@@ -1,0 +1,55 @@
+﻿@model IEnumerable<DataModels.Doctor>
+@{
+    ViewBag.Title = "ViewAllDoctors";
+    WebGrid webGrid = new WebGrid(source: Model, rowsPerPage: 5);
+}
+
+
+@section HeaderSection
+{
+    <style>
+        .content-pane {
+            padding-top: 10%;
+        }
+
+        .deleteLink {
+            color: red;
+        }
+    </style>
+}
+
+<center>
+    <h3>My Doctors</h3>
+</center>
+<br />
+
+@webGrid.GetHtml(tableStyle: "table table-responsive table-hover table-bordered",
+    mode: WebGridPagerModes.All,
+    firstText: "<< First",
+    previousText: "< Prev",
+    nextText: "Next >",
+    lastText: "Last >>",
+    columns: webGrid.Columns(
+         webGrid.Column(header: "Doctor Name", columnName: "FirstName", format: (item) => { if (item.IsPrimary == 1) return @Html.Raw(item.FirstName + "<br /> (Primary Doctor)"); else return item.FirstName; }),
+         webGrid.Column("HospitalName", "Hospital Name"),
+         webGrid.Column("Phone1", "Contact Number"),
+         webGrid.Column("Address", "Address"),
+         webGrid.Column(columnName: "View", format: (item) => Html.ActionLink("View", "ViewDoctor", new { id = item.DoctorId }), canSort: false),
+         webGrid.Column(columnName: "Edit", format: (item) => Html.ActionLink("Edit", "EditDoctor", new { id = item.DoctorId }), canSort: false),
+         webGrid.Column(columnName: "Delete", format: (item) => Html.ActionLink("Delete", "DeleteDoctor", new { id = item.DoctorId }, new { Class = "deleteLink" }), canSort: false)
+    )
+)
+
+@section FooterSection
+{
+    <script>
+        $(document).ready(function () {
+            $(".deleteLink").click(function (e) {
+                if (!window.confirm("Are you sure?"))
+                {
+                    e.preventDefault();
+                }
+            });
+        });
+    </script>
+}

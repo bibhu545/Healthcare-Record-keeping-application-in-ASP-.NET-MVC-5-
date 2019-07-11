@@ -176,7 +176,6 @@ namespace HealthCareMVC.Controllers
                 {
                     user.Profile = databasePath;
                 }
-                user.Profile = databasePath;
                 user = new BusinessClass().EditUserDetails(user);
                 if (user.status == 1)
                 {

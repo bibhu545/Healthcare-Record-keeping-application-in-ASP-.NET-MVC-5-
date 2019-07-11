@@ -162,6 +162,9 @@
     <Content Include="Views\Hospital\ViewHospital.cshtml" />
     <Content Include="Views\Hospital\EditHospital.cshtml" />
     <Content Include="Views\Doctor\AddNewDoctor.cshtml" />
+    <Content Include="Views\Doctor\ViewAllDoctors.cshtml" />
+    <Content Include="Views\Doctor\ViewDoctor.cshtml" />
+    <Content Include="Views\Doctor\EditDoctor.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

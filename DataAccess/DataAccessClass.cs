@@ -330,5 +330,130 @@ namespace DataAccess
             }
             return hospital;
         }
+        public Doctor AddDoctorToDB(Doctor doctor)
+        {
+            doctor.status = -1;
+            try
+            {
+                conn = new SqlConnection(connectionString);
+                conn.Open();
+                SqlCommand scmd = new SqlCommand("CreateDoctors", conn);
+                scmd.CommandType = CommandType.StoredProcedure;
+                scmd.Parameters.AddWithValue("@userid", doctor.UserId);
+                scmd.Parameters.AddWithValue("@hospitalid", doctor.HospitalId);
+                scmd.Parameters.AddWithValue("@firstname", doctor.FirstName);
+                scmd.Parameters.AddWithValue("@lastname", doctor.LastName);
+                scmd.Parameters.AddWithValue("@speciality", doctor.Speciality);
+                scmd.Parameters.AddWithValue("@address", doctor.Address);
+                scmd.Parameters.AddWithValue("@phone1", doctor.Phone1);
+                scmd.Parameters.AddWithValue("@phone2", doctor.Phone2);
+                scmd.Parameters.AddWithValue("@email", doctor.Email);
+                scmd.Parameters.AddWithValue("@isprimary", doctor.IsPrimary);
+                doctor.status = scmd.ExecuteNonQuery();
+            }
+            finally
+            {
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+            }
+            return doctor;
+        }
+        public int DeleteDoctorFromDB(int doctorid)
+        {
+            int deleted = -1;
+            try
+            {
+                conn = new SqlConnection(connectionString);
+                conn.Open();
+                SqlCommand scmd = new SqlCommand("DELETE FROM doctors WHERE doctorid = " + doctorid, conn);
+                deleted = scmd.ExecuteNonQuery();
+            }
+            finally
+            {
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+            }
+            return deleted;
+        }
+        public DataTable GetDoctorsFromDB(int userid, int doctorid)
+        {
+            DataTable dt;
+            try
+            {
+                conn = new SqlConnection(connectionString);
+                conn.Open();
+                SqlCommand scmd = new SqlCommand("GetDoctorDetailsV2", conn);
+                scmd.CommandType = CommandType.StoredProcedure;
+                scmd.Parameters.AddWithValue("@doctorid", doctorid);
+                scmd.Parameters.AddWithValue("@userid", userid);
+                SqlDataAdapter sda = new SqlDataAdapter(scmd);
+                dt = new DataTable();
+                sda.Fill(dt);
+            }
+            finally
+            {
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+            }
+            return dt;
+        }
+        public Doctor UpdateDoctorToDB(Doctor doctor)
+        {
+            doctor.status = -1;
+            try
+            {
+                conn = new SqlConnection(connectionString);
+                conn.Open();
+                SqlCommand scmd = new SqlCommand("UpdateDoctor", conn);
+                scmd.CommandType = CommandType.StoredProcedure;
+                scmd.Parameters.AddWithValue("@doctorid", doctor.DoctorId);
+                scmd.Parameters.AddWithValue("@userid", doctor.UserId);
+                scmd.Parameters.AddWithValue("@hospitalid", doctor.HospitalId);
+                scmd.Parameters.AddWithValue("@firstname", doctor.FirstName);
+                scmd.Parameters.AddWithValue("@lastname", doctor.LastName);
+                scmd.Parameters.AddWithValue("@speciality", doctor.Speciality);
+                scmd.Parameters.AddWithValue("@address", doctor.Address);
+                scmd.Parameters.AddWithValue("@phone1", doctor.Phone1);
+                scmd.Parameters.AddWithValue("@phone2", doctor.Phone2);
+                scmd.Parameters.AddWithValue("@email", doctor.Email);
+                scmd.Parameters.AddWithValue("@isprimary", doctor.IsPrimary);
+                doctor.status = scmd.ExecuteNonQuery();
+            }
+            finally
+            {
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+            }
+            return doctor;
+        }
+        public DataTable GetDoctorsByHospitalFromDB(int hospitalId)
+        {
+            DataTable dt;
+            try
+            {
+                conn = new SqlConnection(connectionString);
+                conn.Open();
+                SqlCommand scmd = new SqlCommand("select * from doctors where hospitalid=" + hospitalId, conn);
+                SqlDataAdapter sda = new SqlDataAdapter(scmd);
+                dt = new DataTable();
+                sda.Fill(dt);
+            }
+            finally
+            {
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+            }
+            return dt;
+        }
     }
 }

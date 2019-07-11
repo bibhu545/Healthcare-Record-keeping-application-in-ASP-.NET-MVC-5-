@@ -1,0 +1,77 @@
+﻿@model DataModels.Doctor
+@{
+    ViewBag.Title = "EditDoctor";
+}
+
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+
+        <center>
+            <h3>Edit Doctor Details</h3>
+        </center>
+        <br />
+
+        <div class="table-responsive">
+            @using (Html.BeginForm("EditDoctorRequest", "Doctor"))
+            {
+                @Html.AntiForgeryToken()
+                @Html.HiddenFor(model => model.DoctorId)
+                <table class="table table-hover">
+                    <tr>
+                        <th>First Name: </th>
+                        <td>
+                            @Html.TextBoxFor(model => model.FirstName, new { @class = "form-control" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Last Name: </th>
+                        <td>
+                            @Html.TextBoxFor(model => model.LastName, new { @class = "form-control" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Hospital Name: </th>
+                        <td>
+                            @Html.DropDownListFor(model => model.HospitalId, ViewBag.hospitals as SelectList, new { @class = "form-control" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Speciality: </th>
+                        <td>
+                            @Html.DropDownListFor(model => model.Speciality, ViewBag.specialities as SelectList, new { @class = "form-control" })
+                        </td>
+                    </tr>
+                    <tr>
+                        <th>Address: </th>
+                        <td>@Html.TextBoxFor(model => model.Address, new { @class = "form-control" })</td>
+                    </tr>
+                    <tr>
+                        <th>Contact Number: </th>
+                        <td>@Html.TextBoxFor(model => model.Phone1, new { @class = "form-control" })</td>
+                    </tr>
+                    <tr>
+                        <th>Alternative Number: </th>
+                        <td>@Html.TextBoxFor(model => model.Phone2, new { @class = "form-control" })</td>
+                    </tr>
+                    <tr>
+                        <th>Email</th>
+                        <td>@Html.TextBoxFor(model => model.Email, new { @class = "form-control" })</td>
+                    </tr>
+                    <tr>
+                        <th colspan="2">
+                            <label class="checkbox-inline">@Html.CheckBoxFor(model => model.SetPrimary) Set Primary</label>
+                        </th>
+                    </tr>
+                </table>
+                <center>
+                    <input type="submit" value="Update Now" class="btn btn-primary" />
+                    &nbsp;&nbsp;&nbsp;&nbsp;
+                    <a href="/ViewDoctors" class="btn btn-default">Cancel</a>
+                </center>
+            }
+        </div>
+    </div>
+    <div class="col-md-2"></div>
+</div>
+

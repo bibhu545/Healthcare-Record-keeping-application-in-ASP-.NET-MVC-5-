@@ -34,6 +34,11 @@ namespace DataModels
         public int IsPrimary { get; set; }
         public bool SetPrimary { get; set; }   //for mvc checkboxfor control
     }
+    public class Speciality
+    {
+        public int SpecialityId { get; set; }
+        public String SpecialityName { get; set; }
+    }
     public class Doctor
     {
         public int status = -1;
@@ -41,15 +46,19 @@ namespace DataModels
         public int DoctorId { get; set; }
         public int UserId { get; set; }
         public int HospitalId { get; set; }
-        [Display(Name = "First Name:")]
+        [Display(Name = "Hospital Name")]
+        public String HospitalName { get; set; } //for mvc
+        [Display(Name = "First Name")]
         public String FirstName { get; set; }
-        [Display(Name = "Last Name:")]
+        [Display(Name = "Last Name")]
         public String LastName { get; set; }
         public int Speciality { get; set; }
+        [Display(Name = "Speciality")]
+        public String SpecialistIn { get; set; } //for mvc
         public String Address { get; set; }
-        [Display(Name = "Contact Number:")]
+        [Display(Name = "Contact Number")]
         public String Phone1 { get; set; }
-        [Display(Name = "Alternative Number:")]
+        [Display(Name = "Alternative Number")]
         public String Phone2 { get; set; }
         public String Email { get; set; }
         public int IsPrimary { get; set; }

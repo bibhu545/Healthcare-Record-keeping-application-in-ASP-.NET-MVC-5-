@@ -1,0 +1,71 @@
+﻿@model DataModels.Doctor
+@{
+    ViewBag.Title = "ViewDoctor";
+}
+
+@section HeaderSection
+{
+    <style>
+        .primary-hospital {
+            color: darkgreen;
+        }
+    </style>
+}
+
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+
+        <center>
+            <h3>Hospital Details</h3>
+            @if (ViewBag.IsPrimary == 1)
+            {
+                <h4><span class="primary-hospital">Primary Doctor</span></h4>
+            }
+        </center>
+        <br />
+
+        <div class="table-responsive">
+            <table class="table table-hover">
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.FirstName)</th>
+                    <td>@Html.DisplayFor(model => model.FirstName)</td>
+                </tr>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.LastName)</th>
+                    <td>@Html.DisplayFor(model => model.LastName)</td>
+                </tr>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.HospitalName)</th>
+                    <td>@Html.DisplayFor(model => model.HospitalName)</td>
+                </tr>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.SpecialistIn)</th>
+                    <td>@Html.DisplayFor(model => model.SpecialistIn)</td>
+                </tr>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.Address)</th>
+                    <td>@Html.DisplayFor(model => model.Address)</td>
+                </tr>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.Phone1)</th>
+                    <td>@Html.DisplayFor(model => model.Phone1)</td>
+                </tr>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.Phone2)</th>
+                    <td>@Html.DisplayFor(model => model.Phone2)</td>
+                </tr>
+                <tr>
+                    <th>@Html.DisplayNameFor(model => model.Email)</th>
+                    <td>@Html.DisplayFor(model => model.Email)</td>
+                </tr>
+            </table>
+            <center>
+                @Html.ActionLink("Edit Details", "EditDoctor", new { id = Model.DoctorId }, new { @class = "btn btn-primary" })
+                @Html.ActionLink("Back to List", "ViewAllDoctors", new { }, new { @class = "btn btn-success" })
+            </center>
+        </div>
+    </div>
+    <div class="col-md-2"></div>
+</div>
+
