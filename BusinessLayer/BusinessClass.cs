@@ -175,10 +175,6 @@ namespace BusinessLayer
             }
             return doctorList;
         }
-        public DataTable GetDoctorsByHospital(int hospitalid)
-        {
-            return new DataAccessClass().GetDoctorsByHospitalFromDB(hospitalid);
-        }
         public Doctor AddDoctor(Doctor doctor)
         {
             doctor.FirstName = doctor.FirstName.Replace("'", "''");
@@ -198,6 +194,38 @@ namespace BusinessLayer
             doctor.Phone1 = doctor.Phone1.Replace("'", "''");
             doctor.Phone2 = doctor.Phone2.Replace("'", "''");
             return new DataAccessClass().UpdateDoctorToDB(doctor);
+        }
+
+        public List<RecordType> GetRecordTypes()
+        {
+            DataTable dt = new DataAccessClass().GetRecordTypesFromDB();
+            List<RecordType> recordTypes = new List<RecordType>();
+            foreach (DataRow row in dt.Rows)
+            {
+                recordTypes.Add(new RecordType()
+                {
+                    RecordId = Convert.ToInt32(row["recordid"]),
+                    RecordTypeName = row["recordtype"].ToString()
+                });
+            }
+            return recordTypes;
+        }
+        public Document SaveDocument(Document document, List<String> allFiles)
+        {
+            return new DataAccessClass().SaveDocumentToDB(document, allFiles);
+        }
+        public List<Doctor> GetDoctorsByHospital(int hospitalid)
+        {
+            DataTable dt =  new DataAccessClass().GetDoctorsByHospitalFromDB(hospitalid);
+            List<Doctor> doctorList = new List<Doctor>();
+            foreach (DataRow row in dt.Rows)
+            {
+                doctorList.Add(new Doctor() {
+                    DoctorId = Convert.ToInt32(row["doctorid"]),
+                    FirstName = row["firstname"].ToString()
+                });
+            }
+            return doctorList;
         }
     }
 }

@@ -1,0 +1,100 @@
+﻿@using DataModels
+@{
+    ViewBag.Title = "AddNewDocument";
+}
+
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+
+        <center>
+            <h3>Add New Document</h3>
+        </center>
+        <br />
+
+        @using (Html.BeginForm("AddNewDocumentRequest", "Valut"))
+        {
+            <div class="form-group">
+                <label>Select Document: </label>
+                <input type="file" name="txtFile"/>
+            </div>
+            <div class="form-group">
+                <label>Hospital Name: </label>
+                <select id="ddlHospitals" class="form-control">
+                    <option value="0">Select Hospital</option>
+                    @foreach(Hospital hospital in ViewBag.hospitals)
+                    {
+                        <option value="@hospital.HospitalId">@hospital.HospitalName</option>
+                    }
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Issued By: </label>
+                <select id="ddlDoctors" class="form-control">
+                    <option value="0">Select Doctor</option>
+                </select>
+            </div>
+            <div class="form-group">
+                <label>Issue Date: </label>
+                <input type="date" name="txtDate" class="form-control"/>
+            </div>
+
+            <div class="form-group">
+                <label>Document Type: </label>
+                <select id="ddlDoctors" class="form-control">
+                    <option value="0">Select Record Type</option>
+                    @foreach (RecordType record in ViewBag.recordTypes)
+                    {
+                        <option value="@record.RecordId">@record.RecordTypeName</option>
+                    }
+                </select>
+            </div>
+
+            <center>
+                <input type="submit" class="btn btn-primary" value="Add Now"/>
+                &nbsp;&nbsp;&nbsp;&nbsp;
+                <a href="/MyDocuments" class="btn btn-default">Cancel</a>
+            </center>
+        }
+
+    </div>
+    <div class="col-md-2"></div>
+</div>
+
+
+@section FooterSection
+{
+    <script>
+        $(document).ready(function () {
+            $("#ddlDoctors").prop("disabled", true);
+            $("#ddlHospitals").change(function () {
+                $("#ddlDoctors").empty();
+                $("#ddlDoctors").append("<option value='0'>Select Doctor</option>");
+                var hospitalValue = this.value;
+                if (hospitalValue > 0)
+                {
+                    $.ajax({
+                        type: 'POST',
+                        url: '/Vault/GetDoctorsByHospital',
+                        dataType: 'Json',
+                        data: { hospitalId: hospitalValue },
+                        success: function (data) {
+                            console.log(data);
+                            $("#ddlDoctors").empty();
+                            $("#ddlDoctors").append("<option value='0'>Select Doctor</option>");
+                            $("#ddlDoctors").prop("disabled", false);
+                            data = JSON.parse(data);
+                            console.log(data);
+                            $.each(data, function (index, value) {
+                                $("#ddlDoctors").append("<option value='" + value.DoctorId + "'>" + value.FirstName + "</option>");
+                            });
+                        },
+                        error: function (err) {
+                            alert(err);
+                        }
+                    });
+                }
+            });
+        });
+    </script>
+}

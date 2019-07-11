@@ -136,6 +136,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\HospitalController.cs" />
     <Compile Include="Controllers\UserController.cs" />
+    <Compile Include="Controllers\VaultController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -165,6 +166,8 @@
     <Content Include="Views\Doctor\ViewAllDoctors.cshtml" />
     <Content Include="Views\Doctor\ViewDoctor.cshtml" />
     <Content Include="Views\Doctor\EditDoctor.cshtml" />
+    <Content Include="Views\Vault\ViewAllDocuments.cshtml" />
+    <Content Include="Views\Vault\AddNewDocument.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

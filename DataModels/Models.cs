@@ -79,4 +79,9 @@ namespace DataModels
         public String Path { get; set; }
         public String UploadDate { get; set; }
     }
+    public class RecordType
+    {
+        public int RecordId { get; set; }
+        public String RecordTypeName { get; set; }
+    }
 }
