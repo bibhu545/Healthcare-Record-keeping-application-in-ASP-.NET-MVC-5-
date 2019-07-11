@@ -1,7 +1,11 @@
 ﻿@model DataModels.Doctor
+@using DataModels
+@using BusinessLayer
 
 @{
     ViewBag.Title = "AddNewDoctor";
+    List<Speciality> specialities = ViewBag.specialities;
+    List<Hospital> hospitals = ViewBag.hospitals;
 }
 
 @section HeaderSection

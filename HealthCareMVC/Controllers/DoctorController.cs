@@ -3,6 +3,9 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Web;
 using System.Web.Mvc;
+using DataModels;
+using BusinessLayer;
+using LogsAndError;
 
 namespace HealthCareMVC.Controllers
 {
@@ -17,7 +20,35 @@ namespace HealthCareMVC.Controllers
         [Route("AddNewDoctor")]
         public ActionResult AddNewDoctor()
         {
-            return View();
+            try
+            {
+                User user = null;
+                if (Session["loggedUser"] != null)
+                {
+                    user = (User)Session["loggedUser"];
+                    List<Hospital> hospitals = new BusinessClass().GetHospitals(user.UserId);
+                    List<Speciality> specialities = new BusinessClass().GetSpecialities();
+                    ViewBag.hospitals = hospitals;
+                    ViewBag.specialities = specialities;
+                    return View();
+                }
+                else if (Session["inactiveUser"] != null)
+                {
+                    user = (User)Session["inactiveUser"];
+                    TempData["errorMessage"] = "Your account is not activated yet.";
+                    return RedirectToAction("ConfirmRegistration", "User");
+                }
+                else
+                {
+                    TempData["errorMessage"] = "You have to login first.";
+                    return RedirectToAction("Login", "Home");
+                }
+            }
+            catch (Exception ex)
+            {
+                new LogAndErrorsClass().CatchException(ex);
+                return RedirectToAction("ErrorControl", "Home");
+            }
         }
         public ActionResult AddNewDoctorRequest()
         {

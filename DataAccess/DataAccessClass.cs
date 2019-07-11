@@ -224,6 +224,27 @@ namespace DataAccess
             }
             return dt;
         }
+        public DataTable GetSpecialitiesFromDB()
+        {
+            DataTable dt = null;
+            try
+            {
+                conn = new SqlConnection(connectionString);
+                conn.Open();
+                SqlCommand scmd = new SqlCommand("select * from speciality", conn);
+                SqlDataAdapter sda = new SqlDataAdapter(scmd);
+                dt = new DataTable();
+                sda.Fill(dt);
+            }
+            finally
+            {
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+            }
+            return dt;
+        }
         public int DeleteHospitalFromDB(int hospitalid)
         {
             int deleted = -1;

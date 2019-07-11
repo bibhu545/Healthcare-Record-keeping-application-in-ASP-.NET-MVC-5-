@@ -11,6 +11,11 @@ using DataModels;
 
 namespace BusinessLayer
 {
+    public class Speciality
+    {
+        public int SpecialityId { get; set; }
+        public String SpecialityName { get; set; }
+    }
     public class BusinessClass
     {
         public User CreateUser(User user)
@@ -72,6 +77,20 @@ namespace BusinessLayer
                 });
             }
             return hospitalList;
+        }
+        public List<Speciality> GetSpecialities()
+        {
+            DataTable dt = new DataAccessClass().GetSpecialitiesFromDB();
+            List<Speciality> specialities = new List<Speciality>();
+            foreach (DataRow row in dt.Rows)
+            {
+                specialities.Add(new Speciality()
+                {
+                    SpecialityId = Convert.ToInt32(row["specialityid"]),
+                    SpecialityName = row["speciality"].ToString()
+                });
+            }
+            return specialities;
         }
         public int DeleteHospital(int hospitalid)
         {
