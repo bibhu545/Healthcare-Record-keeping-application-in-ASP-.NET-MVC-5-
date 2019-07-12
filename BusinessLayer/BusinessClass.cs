@@ -11,6 +11,17 @@ using DataModels;
 
 namespace BusinessLayer
 {
+    public class FileData
+    {
+        public List<int> DocumentId = new List<int>();
+        public List<String> FileName = new List<string>();
+        public List<String> Extension = new List<string>();
+        public List<String> FilePath = new List<string>();
+        public List<String> IssueDate = new List<string>();
+        public List<String> HospitalName = new List<string>();
+        public List<String> DoctorName = new List<string>();
+        public List<String> RecordType = new List<string>();
+    }
     public class BusinessClass
     {
         public User CreateUser(User user)
@@ -226,6 +237,78 @@ namespace BusinessLayer
                 });
             }
             return doctorList;
+        }
+        public FileData GetFiles(int userid)
+        {
+            DataTable dt = new DataAccessClass().GetFilesFromDB(userid);
+            FileData fileData = new FileData();
+            foreach (DataRow row in dt.Rows)
+            {
+                String file = row["filepath"].ToString();
+                String fName = file.Substring(file.LastIndexOf("/"), file.Length - file.LastIndexOf("/")).Substring(1);
+                String extension = fName.Substring(fName.LastIndexOf(".")).Substring(1); ;
+                fileData.FileName.Add(fName.Replace("." + extension, "").Substring(7));
+                fileData.Extension.Add(extension);
+                fileData.DocumentId.Add(Convert.ToInt32(row["documentid"]));
+                fileData.FilePath.Add(row["filepath"].ToString());
+                fileData.IssueDate.Add(row["issuedate"].ToString());
+                fileData.HospitalName.Add(row["hospitalname"].ToString());
+                fileData.DoctorName.Add(row["firstname"].ToString());
+                fileData.RecordType.Add(row["recordid"].ToString());
+            }
+            return fileData;
+        }
+        public FileData GetFilteredFilesV2(int userid, DateTime startDate, DateTime endDate)
+        {
+            DataTable dt = new DataAccessClass().GetFilteredFilesFromDBV2(userid, startDate, endDate);
+            FileData fileData = new FileData();
+            foreach (DataRow row in dt.Rows)
+            {
+                String file = row["filepath"].ToString();
+                String fName = file.Substring(file.LastIndexOf("/"), file.Length - file.LastIndexOf("/")).Substring(1);
+                String extension = fName.Substring(fName.LastIndexOf(".")).Substring(1); ;
+                fileData.FileName.Add(fName.Replace("." + extension, "").Substring(7));
+                fileData.Extension.Add(extension);
+                fileData.DocumentId.Add(Convert.ToInt32(row["documentid"]));
+                fileData.FilePath.Add(row["filepath"].ToString());
+                fileData.IssueDate.Add(row["issuedate"].ToString());
+                fileData.HospitalName.Add(row["hospitalname"].ToString());
+                fileData.DoctorName.Add(row["firstname"].ToString());
+                fileData.RecordType.Add(row["recordid"].ToString());
+            }
+            return fileData;
+        }
+        public int DeleteDocument(int documentid)
+        {
+            return new DataAccessClass().DeleteDocumentFromDB(documentid);
+        }
+
+        public int RandomNumber(int min, int max)
+        {
+            Random random = new Random();
+            return random.Next(min, max);
+        }
+        public string RandomString(int size, bool lowerCase)
+        {
+            StringBuilder builder = new StringBuilder();
+            Random random = new Random();
+            char ch;
+            for (int i = 0; i < size; i++)
+            {
+                ch = Convert.ToChar(Convert.ToInt32(Math.Floor(26 * random.NextDouble() + 65)));
+                builder.Append(ch);
+            }
+            if (lowerCase)
+                return builder.ToString().ToLower();
+            return builder.ToString();
+        }
+        public string RandomAlphaNumericString()
+        {
+            StringBuilder builder = new StringBuilder();
+            builder.Append(RandomString(2, true));
+            builder.Append(RandomNumber(10, 99));
+            builder.Append(RandomString(2, false));
+            return builder.ToString();
         }
     }
 }

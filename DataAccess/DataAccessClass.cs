@@ -500,5 +500,72 @@ namespace DataAccess
             }
             return document;
         }
+        public DataTable GetFilesFromDB(int userid)
+        {
+            DataTable dt;
+            try
+            {
+                conn = new SqlConnection(connectionString);
+                conn.Open();
+                SqlCommand scmd = new SqlCommand("GetFilesFromDB", conn);
+                scmd.CommandType = CommandType.StoredProcedure;
+                scmd.Parameters.AddWithValue("@userid", userid);
+                SqlDataAdapter sda = new SqlDataAdapter(scmd);
+                dt = new DataTable();
+                sda.Fill(dt);
+            }
+            finally
+            {
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+            }
+            return dt;
+        }
+        public DataTable GetFilteredFilesFromDBV2(int userid, DateTime startDate, DateTime endDate)
+        {
+            DataTable dt;
+            try
+            {
+                conn = new SqlConnection(connectionString);
+                conn.Open();
+                SqlCommand scmd = new SqlCommand("GetFormattedFilesFromDBV2", conn);
+                scmd.CommandType = CommandType.StoredProcedure;
+                scmd.Parameters.AddWithValue("@userid", userid);
+                scmd.Parameters.AddWithValue("@startdate", startDate);
+                scmd.Parameters.AddWithValue("@enddate", endDate);
+                SqlDataAdapter sda = new SqlDataAdapter(scmd);
+                dt = new DataTable();
+                sda.Fill(dt);
+            }
+            finally
+            {
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+            }
+            return dt;
+        }
+        public int DeleteDocumentFromDB(int documentid)
+        {
+            int deleted = -1;
+            try
+            {
+                conn = new SqlConnection(connectionString);
+                conn.Open();
+                SqlCommand scmd = new SqlCommand("DELETE FROM documents WHERE documentid = " + documentid, conn);
+                deleted = scmd.ExecuteNonQuery();
+            }
+            finally
+            {
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+            }
+            return deleted;
+        }
     }
 }

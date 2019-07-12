@@ -12,17 +12,17 @@
         </center>
         <br />
 
-        @using (Html.BeginForm("AddNewDocumentRequest", "Valut"))
+        @using (Html.BeginForm("AddNewDocumentRequest", "Vault", FormMethod.Post, new { enctype = "multipart/form-data" }))
         {
             <div class="form-group">
                 <label>Select Document: </label>
-                <input type="file" name="txtFile"/>
+                <input type="file" name="postedFiles" multiple/>
             </div>
             <div class="form-group">
                 <label>Hospital Name: </label>
-                <select id="ddlHospitals" class="form-control">
+                <select id="ddlHospitals" class="form-control" name="ddlHospital">
                     <option value="0">Select Hospital</option>
-                    @foreach(Hospital hospital in ViewBag.hospitals)
+                    @foreach (Hospital hospital in ViewBag.hospitals)
                     {
                         <option value="@hospital.HospitalId">@hospital.HospitalName</option>
                     }
@@ -30,18 +30,18 @@
             </div>
             <div class="form-group">
                 <label>Issued By: </label>
-                <select id="ddlDoctors" class="form-control">
+                <select id="ddlDoctors" class="form-control" name="ddlDoctor">
                     <option value="0">Select Doctor</option>
                 </select>
             </div>
             <div class="form-group">
                 <label>Issue Date: </label>
-                <input type="date" name="txtDate" class="form-control"/>
+                <input type="date" name="txtDate" class="form-control" />
             </div>
 
             <div class="form-group">
                 <label>Document Type: </label>
-                <select id="ddlDoctors" class="form-control">
+                <select id="ddlDocumentTypes" class="form-control" name="ddlDocumentType">
                     <option value="0">Select Record Type</option>
                     @foreach (RecordType record in ViewBag.recordTypes)
                     {
@@ -51,7 +51,7 @@
             </div>
 
             <center>
-                <input type="submit" class="btn btn-primary" value="Add Now"/>
+                <input type="submit" class="btn btn-primary" value="Add Now" />
                 &nbsp;&nbsp;&nbsp;&nbsp;
                 <a href="/MyDocuments" class="btn btn-default">Cancel</a>
             </center>
@@ -71,8 +71,7 @@
                 $("#ddlDoctors").empty();
                 $("#ddlDoctors").append("<option value='0'>Select Doctor</option>");
                 var hospitalValue = this.value;
-                if (hospitalValue > 0)
-                {
+                if (hospitalValue > 0) {
                     $.ajax({
                         type: 'POST',
                         url: '/Vault/GetDoctorsByHospital',
