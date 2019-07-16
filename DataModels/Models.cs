@@ -24,12 +24,22 @@ namespace DataModels
     public class Hospital
     {
         public int status = -1;
+        [Display(Name = "Hospital Name")]
         public int HospitalId { get; set; }
         public int UserId { get; set; }
+
+        [Required(ErrorMessage = "Name is Required")]
         public String HospitalName { get; set; }
+
+        [Required(ErrorMessage = "Address is Required")]
         public String Address { get; set; }
+
+        [Required(ErrorMessage = "Contact number is Required")]
         public String Phone1 { get; set; }
         public String Phone2 { get; set; }
+
+        [Required(ErrorMessage = "Email is Required")]
+        [RegularExpression(@"^([a-zA-Z0-9_\-\.]+)@((\[[0-9]{1,3}" + @"\.[0-9]{1,3}\.[0-9]{1,3}\.)|(([a-zA-Z0-9\-]+\" + @".)+))([a-zA-Z]{2,4}|[0-9]{1,3})(\]?)$", ErrorMessage = "Email is not valid")]
         public String Email { get; set; }
         public int IsPrimary { get; set; }
         public bool SetPrimary { get; set; }   //for mvc checkboxfor control

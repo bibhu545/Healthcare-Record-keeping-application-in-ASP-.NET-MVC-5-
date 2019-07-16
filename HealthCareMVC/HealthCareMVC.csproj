@@ -127,6 +127,11 @@
     <Content Include="Scripts\jquery-3.4.1.slim.min.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.js" />
     <Content Include="Scripts\jquery.unobtrusive-ajax.min.js" />
+    <None Include="Scripts\jquery.validate-vsdoc.js" />
+    <Content Include="Scripts\jquery.validate.js" />
+    <Content Include="Scripts\jquery.validate.min.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.js" />
+    <Content Include="Scripts\jquery.validate.unobtrusive.min.js" />
     <Content Include="Scripts\npm.js" />
     <Content Include="Scripts\Site-Script.js" />
     <Content Include="Scripts\view-doctor-v2.js" />
@@ -171,6 +176,7 @@
     <Content Include="Views\Vault\ViewAllDocuments.cshtml" />
     <Content Include="Views\Vault\AddNewDocument.cshtml" />
     <Content Include="Views\Doctor\ViewAllDoctorsV2.cshtml" />
+    <Content Include="Views\Hospital\AddNewHospitalV2.cshtml" />
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
     </None>

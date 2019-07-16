@@ -1,8 +1,68 @@
-﻿
+﻿@using DataModels
 @{
     ViewBag.Title = "UserHome";
+    User user = (User)Session["loggedUser"];
 }
 
+@section HeaderSection
+{
+    <style>
+        .activate {
+            padding-top: 10%;
+            margin: auto;
+        }
+    </style>
+}
+
+<div class="row">
+    <div class="col-md-2"></div>
+    <div class="col-md-8">
+        @if (ViewBag.Message == null)
+        {
+            <center>
+                <h3><u>Hello @user.FirstName</u></h3>
+            </center>
+            <br />
+            <div class="row">
+                <div class="col-md-6">
+                    <center>
+                        <h4><u>My Details</u></h4>
+                        <br />
+                        @user.FirstName @user.LastName
+                        <br />
+                        @user.Email
+                        <br />
+                        @user.Address
+                        <br />
+                        @user.Phone
+                        <br />
+                        <a href="/EditProfile" style="text-decoration:none">(Update Now)</a>
+                    </center>
+                </div>
+                <div class="col-md-6">
+                    <center>
+                        <h4><u>My Statistics</u></h4>
+                        <br />
+                        <a href="/ViewHospitals" style="text-decoration:none">No of Hospitals</a>: @ViewBag.totalHospitals
+                        <br />
+                        <a href="/ViewDoctors" style="text-decoration:none">No of Doctors</a>: @ViewBag.totalDoctors
+                        <br />
+                        <a href="/MyDocuments" style="text-decoration:none">No of Documents</a>: @ViewBag.totalDocuments
+                    </center>
+                </div>
+            </div>
+        }
+        else
+        {
+            <div class="activate">
+                <h3>@ViewBag.Message</h3>
+                <br />
+                <a href="/Home/ConfirmRegistration" class="btn btn-primary">Activate Now</a>
+            </div>
+        }
+    </div>
+    <div class="col-md-2"></div>
+</div>
 
 
 

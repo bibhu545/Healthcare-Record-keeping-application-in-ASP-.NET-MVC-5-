@@ -72,6 +72,36 @@ namespace HealthCareMVC.Controllers
             }
         }
 
+        [Route("AddNewHospitalV2")]
+        public ActionResult AddNewHospitalV2()
+        {
+            try
+            {
+                User user = null;
+                if (Session["loggedUser"] != null)
+                {
+                    user = (User)Session["loggedUser"];
+                    return View();
+                }
+                else if (Session["inactiveUser"] != null)
+                {
+                    user = (User)Session["inactiveUser"];
+                    TempData["errorMessage"] = "Your account is not activated yet.";
+                    return RedirectToAction("ConfirmRegistration", "User");
+                }
+                else
+                {
+                    TempData["errorMessage"] = "You have to login first.";
+                    return RedirectToAction("Login", "Home");
+                }
+            }
+            catch (Exception ex)
+            {
+                new LogAndErrorsClass().CatchException(ex);
+                return RedirectToAction("ErrorControl", "Home");
+            }
+        }
+
         [HttpPost]
         public ActionResult AddNewHospitalRequest(Hospital hospital)
         {

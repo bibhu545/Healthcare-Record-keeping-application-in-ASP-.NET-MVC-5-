@@ -252,7 +252,9 @@ namespace DataAccess
             {
                 conn = new SqlConnection(connectionString);
                 conn.Open();
-                SqlCommand scmd = new SqlCommand("DELETE FROM hospitals WHERE hospitalid = " + hospitalid, conn);
+                SqlCommand scmd = new SqlCommand("DeleteHospital", conn);
+                scmd.CommandType = CommandType.StoredProcedure;
+                scmd.Parameters.AddWithValue("@hospitalid", hospitalid);
                 deleted = scmd.ExecuteNonQuery();
             }
             finally
@@ -566,6 +568,64 @@ namespace DataAccess
                 }
             }
             return deleted;
+        }
+
+        public int GetTotalDoctorsFormDb(int userid)
+        {
+            int totalDoctors = 0;
+            try
+            {
+                conn = new SqlConnection(connectionString);
+                conn.Open();
+                SqlCommand scmd = new SqlCommand("select count(*) from doctors where userid = " + userid, conn);
+                totalDoctors = Convert.ToInt32(scmd.ExecuteScalar());
+            }
+            finally
+            {
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+            }
+            return totalDoctors;
+        }
+        public int GetTotalHospitalsFormDb(int userid)
+        {
+            int totalHospitals = 0;
+            try
+            {
+                conn = new SqlConnection(connectionString);
+                conn.Open();
+                SqlCommand scmd = new SqlCommand("select count(*) from hospitals where userid = " + userid, conn);
+                totalHospitals = Convert.ToInt32(scmd.ExecuteScalar());
+            }
+            finally
+            {
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+            }
+            return totalHospitals;
+        }
+        public int GetTotalDocumentsFormDb(int userid)
+        {
+            int totalDocuments = 0;
+            try
+            {
+                conn = new SqlConnection(connectionString);
+                conn.Open();
+                SqlCommand scmd = new SqlCommand("select count(*) from documents where userid = " + userid, conn);
+                totalDocuments = Convert.ToInt32(scmd.ExecuteScalar());
+            }
+            finally
+            {
+                if (conn != null)
+                {
+                    conn.Close();
+                }
+            }
+            return totalDocuments;
         }
     }
 }

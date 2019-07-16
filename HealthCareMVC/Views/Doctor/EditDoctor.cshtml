@@ -12,6 +12,8 @@
         </center>
         <br />
 
+        <input type="hidden" id="txtHospitalId" value="@Model.HospitalId" />
+        <input type="hidden" id="txtSpecialityId" value="@Model.Speciality"/>
         <div class="table-responsive">
             @using (Html.BeginForm("EditDoctorRequest", "Doctor"))
             {
@@ -33,13 +35,13 @@
                     <tr>
                         <th>Hospital Name: </th>
                         <td>
-                            @Html.DropDownListFor(model => model.HospitalId, ViewBag.hospitals as SelectList, new { @class = "form-control" })
+                            @Html.DropDownListFor(model => model.HospitalId, ViewBag.hospitals as SelectList, new { @id = "ddlHospitals", @class = "form-control" })
                         </td>
                     </tr>
                     <tr>
                         <th>Speciality: </th>
                         <td>
-                            @Html.DropDownListFor(model => model.Speciality, ViewBag.specialities as SelectList, new { @class = "form-control" })
+                            @Html.DropDownListFor(model => model.Speciality, ViewBag.specialities as SelectList, new { @id = "ddlSpecialities", @class = "form-control" })
                         </td>
                     </tr>
                     <tr>
@@ -75,3 +77,14 @@
     <div class="col-md-2"></div>
 </div>
 
+@section FooterSection
+{
+    <script>
+        $(document).ready(function () {
+            var hospitalId = $("#txtHospitalId").val();
+            var specialityId = $("#txtSpecialityId").val();
+            $("#ddlHospitals").val(hospitalId);
+            $("#ddlSpecialities").val(specialityId);
+        });
+    </script>
+}

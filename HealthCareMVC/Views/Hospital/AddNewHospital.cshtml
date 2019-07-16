@@ -22,6 +22,8 @@
         </center>
         @using (Html.BeginForm("AddNewHospitalRequest", "Hospital"))
         {
+            @Html.AntiForgeryToken()
+            @Html.ValidationSummary(true)
             <div class="form-group">
                 <label>Name: </label>
                 @Html.TextBoxFor(x => x.HospitalName, new { Class = "form-control", placeholder = "Enter Hospital Name" })

@@ -45,7 +45,7 @@
     <script>
         $(document).ready(function () {
             $(".deleteLink").click(function (e) {
-                if (!window.confirm("Are you sure?"))
+                if (!window.confirm("Deleting a Hospital will delete all doctors and all documents associated with it. Are you sure? "))
                 {
                     e.preventDefault();
                 }

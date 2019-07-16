@@ -24,7 +24,19 @@ namespace HealthCareMVC.Controllers
                 }
                 else
                 {
-                    return View();
+                    if (Session["loggedUser"] != null)
+                    {
+                        User user = ((User)Session["loggedUser"]);
+                        ViewBag.totalDoctors = new BusinessClass().GetTotalDoctors(user.UserId);
+                        ViewBag.totalHospitals = new BusinessClass().GetTotalHospitals(user.UserId);
+                        ViewBag.totalDocuments = new BusinessClass().GetTotalDocuments(user.UserId);
+                        return View();
+                    }
+                    else
+                    {
+                        ViewBag.Message = "Please activate your account to unlock all functionalities.";
+                        return View();
+                    }
                 }
             }
             catch (Exception ex)
@@ -233,9 +245,9 @@ namespace HealthCareMVC.Controllers
             try
             {
                 User user = (User)Session["loggedUser"];
-                if(user.Password.Equals(form["txtCurrentPassword"].ToString()))
+                if (user.Password.Equals(form["txtCurrentPassword"].ToString()))
                 {
-                    if(form["txtNewPassword"].ToString().Equals(form["txtConfirmPassword"].ToString()))
+                    if (form["txtNewPassword"].ToString().Equals(form["txtConfirmPassword"].ToString()))
                     {
                         user.Password = form["txtNewPassword"].ToString().Trim();
                         user = new BusinessClass().updatePassword(user);

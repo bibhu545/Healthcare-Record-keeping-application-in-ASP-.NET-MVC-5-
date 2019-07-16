@@ -150,7 +150,9 @@ namespace BusinessLayer
                 doctor.DoctorId = Convert.ToInt32(dt.Rows[0]["doctorid"].ToString());
                 doctor.FirstName = dt.Rows[0]["firstname"].ToString();
                 doctor.LastName = dt.Rows[0]["lastname"].ToString();
+                doctor.HospitalId = Convert.ToInt32(dt.Rows[0]["hospitalid"].ToString());
                 doctor.HospitalName = dt.Rows[0]["hospitalname"].ToString();
+                doctor.Speciality = Convert.ToInt32(dt.Rows[0]["specialityid"].ToString());
                 doctor.SpecialistIn = dt.Rows[0]["speciality"].ToString();
                 doctor.Address = dt.Rows[0]["address"].ToString();
                 doctor.Phone1 = dt.Rows[0]["phone1"].ToString();
@@ -282,6 +284,20 @@ namespace BusinessLayer
         {
             return new DataAccessClass().DeleteDocumentFromDB(documentid);
         }
+
+        public int GetTotalDoctors(int userid)
+        {
+            return new DataAccessClass().GetTotalDoctorsFormDb(userid);
+        }
+        public int GetTotalHospitals(int userid)
+        {
+            return new DataAccessClass().GetTotalHospitalsFormDb(userid);
+        }
+        public int GetTotalDocuments(int userid)
+        {
+            return new DataAccessClass().GetTotalDocumentsFormDb(userid);
+        }
+
 
         public int RandomNumber(int min, int max)
         {
